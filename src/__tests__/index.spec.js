@@ -21,6 +21,13 @@ describe('changeStringCase()', () => {
       expect(result).toEqual('MY NAME IS YULIA');
     });
   });
+  describe('no case is used', () => {
+    it('returns original string', () => {
+      const result = changeStringCase('my name is Yulia');
+
+      expect(result).toEqual('my name is Yulia');
+    });
+  });
 });
 
 describe('sumOfArray()', () => {
