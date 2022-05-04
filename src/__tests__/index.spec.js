@@ -25,19 +25,18 @@ describe('changeStringCase()', () => {
 });
 
 describe('sumOfArray()', () => {
-  describe ('accumelate the array', () =>{
-  it('accumulates the numbers of arrays', () => {
-    const result = sumOfArray([0, 1, 2, 3, 4], 1);
+  describe ('numbers are used', () =>{
+  it('returns the sum', () => {
+    const result = sumOfArray([0, 1, 2, 3, 4]);
 
-    expect(result).toEqual(11);
+    expect(result).toEqual(10);
   }, 0);
 });
-
-  describe ('accumulate empty array', () =>{
-    it('accumulates empty array', () => {
+  describe ('empty array', () =>{
+    it('returns zero', () => {
       const result = sumOfArray([]);
 
-      expect(result).toEqual([]);
+      expect(result).toEqual(0);
     }, 0);
   });
 });
@@ -62,8 +61,8 @@ describe('addDotsToString()', () => {
 
 describe('objectEntries()', () => {
   it('adds key and value to the object', () => {
-    const result = objectEntries({firstName: 'Name', age: '12'});
+    const result = objectEntries({firstName: 'Name', age: 12});
 
-    expect(result).toEqual([firstName,'Name'], [age, 12]);
+    expect(result).toEqual([['firstName','Name'], ['age', 12]]);
   });
 });
