@@ -8,15 +8,14 @@ import {
 
 describe('changeStringCase()', () => {
   describe('when lowercase is used', () => {
-    it('changes string to lower case', () => {
+    it('returns string with lower case', () => {
       const result = changeStringCase('MY NAME is yulia', 'lowercase');
 
       expect(result).toEqual('my name is yulia');
     });
   });
-
   describe('when uppercase is used', () => {
-    it('changes string to upper case', () => {
+    it('returns string with upper case', () => {
       const result = changeStringCase('my name is yulia', 'uppercase');
 
       expect(result).toEqual('MY NAME IS YULIA');
@@ -25,14 +24,21 @@ describe('changeStringCase()', () => {
 });
 
 describe('sumOfArray()', () => {
-  describe ('numbers are used', () =>{
-  it('returns the sum', () => {
-    const result = sumOfArray([0, 1, 2, 3, 4]);
+  describe('numbers are used', () => {
+    it('returns the sum', () => {
+      const result = sumOfArray([0, 1, 2, 3, 4]);
 
-    expect(result).toEqual(10);
-  }, 0);
-});
-  describe ('empty array', () =>{
+      expect(result).toEqual(10);
+    }, 0);
+  });
+  describe('not a number', () => {
+    it('returns zero', () => {
+      const result = sumOfArray(['test', 'test', 'test']);
+
+      expect(result).toEqual(0);
+    }, 0);
+  });
+  describe('empty array', () => {
     it('returns zero', () => {
       const result = sumOfArray([]);
 
@@ -41,28 +47,70 @@ describe('sumOfArray()', () => {
   });
 });
 
-
 describe('divisibleBy()', () => {
-    it('filters the array', () => {
+  describe('numbers are used', () => {
+    it('returns filtered array', () => {
       const result = divisibleBy([1, 2, 3, 4, 5], 2);
 
       expect(result).toEqual([2, 4]);
     });
   });
+  describe('strings are used', () => {
+    it('returns empty array', () => {
+      const result = divisibleBy(['test', 'test']);
 
+      expect(result).toEqual([]);
+    });
+  });
+  describe('number is string', () => {
+    it('returns empty array', () => {
+      const result = divisibleBy([1, 2, 3, 4, 5], 'test');
+
+      expect(result).toEqual([]);
+    });
+  });
+});
 
 describe('addDotsToString()', () => {
-  it('adds dots in the end of the string', () => {
-    const result = addDotsToString('cats', 2);
+  describe('string is longer than the second arg', () => {
+    it('returns correct string', () => {
+      const result = addDotsToString('Hello all', 5);
 
-    expect(result).toEqual('cat...');
+      expect(result).toEqual('He...');
+    });
+  });
+  describe('string is shorter than the second arg', () => {
+    it('returns correct string', () => {
+      const result = addDotsToString('Hello all', 50);
+
+      expect(result).toEqual('Hello all');
+    });
+  });
+  describe('no second arg', () => {
+    it('returns original string', () => {
+      const result = addDotsToString('Hello all');
+
+      expect(result).toEqual('Hello all');
+    });
   });
 });
 
 describe('objectEntries()', () => {
-  it('adds key and value to the object', () => {
-    const result = objectEntries({firstName: 'Name', age: 12});
+  describe('obj has values', () => {
+    it('returnns key and value in the object', () => {
+      const result = objectEntries({ firstName: 'Name', age: 12 });
 
-    expect(result).toEqual([['firstName','Name'], ['age', 12]]);
+      expect(result).toEqual([
+        ['firstName', 'Name'],
+        ['age', 12],
+      ]);
+    });
+  });
+  describe('obj is empty', () => {
+    it('returnns empty obj', () => {
+      const result = objectEntries({});
+
+      expect(result).toEqual([]);
+    });
   });
 });
